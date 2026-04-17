@@ -36,7 +36,7 @@ A simple full-stack CRUD-based ordering system built using React and Express (Ty
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ordering-portal.git
+git clone https://github.com/rvrv1234/ordering-portal.git
 cd ordering-portal
 ```
 
