@@ -32,31 +32,54 @@ function App() {
     fetchOrders();
   };
 
+  // Update order status
+  const updateOrder = async (id) => {
+    await API.put(`/orders/${id}`, { status: "completed" });
+    fetchOrders();
+  };
+
   return (
     <div style={{ padding: 20 }}>
       <h2>Orders</h2>
 
-      <input
-        placeholder="Customer Name"
-        onChange={(e) =>
-          setForm({ ...form, customerName: e.target.value })
-        }
-      />
+      <div style={{ marginBottom: 10 }}>
+        <input
+          placeholder="Customer Name"
+          onChange={(e) =>
+            setForm({ ...form, customerName: e.target.value })
+          }
+        />
+      </div>
 
-      <input
-        placeholder="Item"
-        onChange={(e) =>
-          setForm({ ...form, item: e.target.value })
-        }
-      />
+      <div style={{ marginBottom: 10 }}>
+        <input
+          placeholder="Item"
+          onChange={(e) =>
+            setForm({ ...form, item: e.target.value })
+          }
+        />
+      </div>
 
       <button onClick={createOrder}>Add Order</button>
 
       <ul>
         {orders.map((o) => (
-          <li key={o.id}>
-            {o.customerName} - {o.item}
-            <button onClick={() => deleteOrder(o.id)}>Delete</button>
+          <li key={o.id} style={{ marginTop: 10 }}>
+            {o.customerName} - {o.item} ({o.status})
+
+            <button
+              style={{ marginLeft: 10 }}
+              onClick={() => deleteOrder(o.id)}
+            >
+              Delete
+            </button>
+
+            <button
+              style={{ marginLeft: 5 }}
+              onClick={() => updateOrder(o.id)}
+            >
+              Mark Completed
+            </button>
           </li>
         ))}
       </ul>
